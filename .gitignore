@@ -32,3 +32,10 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 
 # Finder (MacOS) folder config
 .DS_Store
+
+# VRM/VRMA models (large files)
+public/models/*.vrm
+public/models/animations/*.vrma
+
+# Config (use config.sample.json as template)
+public/config/config.json
