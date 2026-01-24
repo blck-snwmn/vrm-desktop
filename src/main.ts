@@ -1,32 +1,21 @@
 import './style.css';
-import { initScene } from './scene';
-import { loadVRM } from './vrm-loader';
-import { AnimationController } from './animation-controller';
+import { initScene } from './core/scene';
+import { loadVRM } from './core/vrm-loader';
+import { AnimationController } from './core/animation-controller';
 import type { VRM } from '@pixiv/three-vrm';
+import type { ConfigAdapter } from './adapters/types';
 
-interface Config {
-  model: string;
-  animations: string[];
-}
-
-async function loadConfig(): Promise<Config> {
-  const response = await fetch('/config/config.json');
-  if (!response.ok) {
-    throw new Error('Failed to load config.json');
-  }
-  return response.json() as Promise<Config>;
-}
-
-async function main() {
+export async function startApp(adapter: ConfigAdapter): Promise<void> {
   const canvas = document.getElementById('canvas') as HTMLCanvasElement;
   const ctx = initScene(canvas);
 
   // 設定を読み込み
-  const config = await loadConfig();
+  const config = await adapter.loadConfig();
   console.log('Config loaded:', config);
 
   // VRMモデルをロード
-  const vrm = await loadVRM(`/models/${config.model}`, ctx.scene);
+  const modelUrl = adapter.getModelUrl(config.model);
+  const vrm = await loadVRM(modelUrl, ctx.scene);
   console.log('VRM loaded:', vrm);
 
   // アニメーションコントローラー初期化
@@ -35,7 +24,7 @@ async function main() {
   // アニメーションをロード
   const animationEntries = config.animations.map((file) => ({
     name: file.replace(/\.vrma$/, ''),
-    url: `/models/animations/${file}`,
+    url: adapter.getAnimationUrl(file),
   }));
   await animController.loadAnimations(animationEntries);
 
@@ -73,5 +62,3 @@ function startAnimationLoop(
 
   loop();
 }
-
-main().catch(console.error);
