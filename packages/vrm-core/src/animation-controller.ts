@@ -28,7 +28,6 @@ export class AnimationController {
     this.gltfLoader = new GLTFLoader();
     this.gltfLoader.register((parser) => new VRMAnimationLoaderPlugin(parser));
 
-    // アニメーション終了時に次へ
     this.mixer.addEventListener('finished', () => {
       this.playNext();
     });
@@ -54,7 +53,6 @@ export class AnimationController {
     }
   }
 
-  /** 順番にループ再生を開始 */
   startSequentialLoop(): void {
     this.currentIndex = 0;
     this.playCurrentAnimation();
@@ -77,7 +75,6 @@ export class AnimationController {
     action.clampWhenFinished = true;
     action.reset();
 
-    // クロスフェード
     if (this.currentAction && this.currentAction !== action) {
       action.crossFadeFrom(this.currentAction, 0.5, true);
     }

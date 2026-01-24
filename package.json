@@ -1,24 +1,10 @@
 {
-  "name": "hello-vrm",
-  "module": "index.ts",
-  "type": "module",
+  "name": "vrm-desktop",
   "private": true,
+  "workspaces": ["packages/*", "apps/*"],
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "devDependencies": {
-    "@types/bun": "latest",
-    "@types/three": "^0.182.0",
-    "vite": "^7.3.1"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
-  },
-  "dependencies": {
-    "@pixiv/three-vrm": "^3.4.5",
-    "@pixiv/three-vrm-animation": "^3.4.5",
-    "three": "^0.182.0"
+    "dev:web": "bun run --filter @vrm-desktop/web dev",
+    "dev:tauri": "bun run --filter @vrm-desktop/tauri dev",
+    "dev:electron": "bun run --filter @vrm-desktop/electron dev"
   }
 }

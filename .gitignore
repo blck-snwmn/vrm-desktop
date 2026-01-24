@@ -34,8 +34,8 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 .DS_Store
 
 # VRM/VRMA models (large files)
-public/models/*.vrm
-public/models/animations/*.vrma
+**/public/models/*.vrm
+**/public/models/animations/*.vrma
 
 # Config (use config.sample.json as template)
-public/config/config.json
+**/public/config/config.json

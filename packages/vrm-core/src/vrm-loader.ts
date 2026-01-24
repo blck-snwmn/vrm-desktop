@@ -25,14 +25,9 @@ function setupVRM(vrm: VRM, scene: THREE.Scene): VRM {
     throw new Error('VRM not found in GLTF');
   }
 
-  // 最適化処理
   VRMUtils.removeUnnecessaryVertices(vrm.scene);
   VRMUtils.combineSkeletons(vrm.scene);
-
-  // シーンに追加
   scene.add(vrm.scene);
-
-  // VRM 0.xの場合、回転を修正
   VRMUtils.rotateVRM0(vrm);
 
   return vrm;
