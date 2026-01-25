@@ -1,0 +1,25 @@
+{
+  "name": "@vrm-desktop/tauri",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tauri dev",
+    "build": "tauri build",
+    "dev:ui": "vite",
+    "build:ui": "vite build",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "@vrm-desktop/core": "workspace:*",
+    "@tauri-apps/api": "^2.0.0",
+    "@tauri-apps/plugin-dialog": "^2.0.0",
+    "@tauri-apps/plugin-fs": "^2.0.0",
+    "three": "^0.182.0"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.9.6",
+    "@types/node": "^22.10.5",
+    "@types/three": "^0.182.0",
+    "vite": "^7.3.1"
+  }
+}
