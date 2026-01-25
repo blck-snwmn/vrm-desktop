@@ -1,6 +1,6 @@
-# hello-vrm
+# vrm-desktop
 
-A PoC (Proof of Concept) application for displaying VRM models and playing VRMA animations in a web browser.
+A PoC (Proof of Concept) application for displaying VRM models and playing VRMA animations.
 
 ## Tech Stack
 
@@ -9,8 +9,21 @@ A PoC (Proof of Concept) application for displaying VRM models and playing VRMA 
 - [Three.js](https://threejs.org/) - 3D rendering
 - [@pixiv/three-vrm](https://github.com/pixiv/three-vrm) - VRM loader
 - [@pixiv/three-vrm-animation](https://github.com/pixiv/three-vrm) - VRMA animation
+- [Tauri](https://tauri.app/) - Desktop app framework
 
-## Setup
+## Monorepo Structure
+
+```
+vrm-desktop/
+├── packages/
+│   └── vrm-core/       # Shared VRM logic
+├── apps/
+│   ├── web/            # Browser version (dev/demo)
+│   ├── tauri/          # Tauri desktop app
+│   └── electron/       # Electron desktop app (planned)
+```
+
+## Quick Start
 
 ### 1. Install dependencies
 
@@ -18,38 +31,21 @@ A PoC (Proof of Concept) application for displaying VRM models and playing VRMA 
 bun install
 ```
 
-### 2. Place VRM/VRMA files
-
-Place VRM files in `public/models/` and VRMA files in `public/models/animations/`. Any filename is acceptable.
-
-### 3. Create config file
+### 2. Run
 
 ```bash
-cp public/config/config.sample.json public/config/config.json
+# Web (development/demo)
+bun run dev:web
+
+# Tauri desktop app
+bun run dev:tauri
 ```
 
-Edit `config.json` to specify your file names:
+## Packages
 
-```json
-{
-  "model": "<your VRM filename>",
-  "animations": [
-    "<your VRMA filename>",
-    "<your VRMA filename>"
-  ]
-}
-```
-
-## Development
-
-```bash
-bun run dev
-```
-
-Open http://localhost:5173
-
-## Build
-
-```bash
-bun run build
-```
+| Package | Description |
+|---------|-------------|
+| [@vrm-desktop/core](./packages/vrm-core/) | Platform-independent VRM logic |
+| [@vrm-desktop/web](./apps/web/) | Browser version |
+| [@vrm-desktop/tauri](./apps/tauri/) | Tauri desktop app |
+| @vrm-desktop/electron | Electron desktop app (planned)
