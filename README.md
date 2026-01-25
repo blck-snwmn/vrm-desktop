@@ -1,6 +1,6 @@
 # hello-vrm
 
-VRMモデルを表示し、VRMAアニメーションを再生するためのPoC（Proof of Concept）。
+A PoC (Proof of Concept) application for displaying VRM models and playing VRMA animations in a web browser.
 
 ## Tech Stack
 
@@ -10,23 +10,25 @@ VRMモデルを表示し、VRMAアニメーションを再生するためのPoC�
 - [@pixiv/three-vrm](https://github.com/pixiv/three-vrm) - VRM loader
 - [@pixiv/three-vrm-animation](https://github.com/pixiv/three-vrm) - VRMA animation
 
-## セットアップ（Web）
+## Setup
 
-### 1. 依存関係のインストール
+### 1. Install dependencies
 
 ```bash
 bun install
 ```
 
-### 2. VRM/VRMA ファイルの配置
+### 2. Place VRM/VRMA files
 
-`public/models/` に VRM、`public/models/animations/` に VRMA を配置します。
+Place VRM files in `public/models/` and VRMA files in `public/models/animations/`. Any filename is acceptable.
 
-### 3. config.json の作成
+### 3. Create config file
 
 ```bash
 cp public/config/config.sample.json public/config/config.json
 ```
+
+Edit `config.json` to specify your file names:
 
 ```json
 {
@@ -38,63 +40,16 @@ cp public/config/config.sample.json public/config/config.json
 }
 ```
 
-## Web 開発
+## Development
 
 ```bash
-bun run dev:web
+bun run dev
 ```
 
-http://localhost:5173 を開きます。
-
-## Desktop（Tauri）
-
-### アセット配置（macOS）
-
-`~/Library/Application Support/com.vrm-desktop.app/` 配下に配置します。
-
-```
-~/Library/Application Support/com.vrm-desktop.app/
-├── config/
-│   └── config.json
-└── models/
-    ├── model.vrm
-    └── animations/
-        ├── idle.vrma
-        └── wave.vrma
-```
-
-`config/config.json` の例:
-
-```json
-{
-  "model": "model.vrm",
-  "animations": ["idle.vrma", "wave.vrma"]
-}
-```
-
-### 起動
-
-```bash
-bun run dev:tauri
-```
-
-### 操作
-
-- **Shift + ドラッグ**: ウィンドウ移動
-- **Cmd/Ctrl + Shift + W**: ウィンドウ表示モードの切り替え
-  - ON: 枠あり・リサイズ可・背景表示
-  - OFF: 透明・枠なし・リサイズ不可
+Open http://localhost:5173
 
 ## Build
 
-### Web
-
 ```bash
-bun run --filter @vrm-desktop/web build
-```
-
-### Tauri
-
-```bash
-bun run --filter @vrm-desktop/tauri build
+bun run build
 ```
