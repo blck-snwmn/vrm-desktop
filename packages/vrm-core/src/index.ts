@@ -1,5 +1,5 @@
-export { initScene, type SceneContext } from './scene';
-export { loadVRM, loadVRMFromFile } from './vrm-loader';
+export { initScene, type SceneContext, type SceneOptions } from './scene';
+export { loadVRM, loadVRMFromFile, loadVRMFromArrayBuffer } from './vrm-loader';
 export { AnimationController } from './animation-controller';
 
 // Re-export VRM type for consumers

@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import type { GLTF } from 'three/addons/loaders/GLTFLoader.js';
 import { VRM, VRMLoaderPlugin, VRMUtils } from '@pixiv/three-vrm';
 
 const gltfLoader = new GLTFLoader();
@@ -18,6 +19,21 @@ export async function loadVRMFromFile(file: File, scene: THREE.Scene): Promise<V
   } finally {
     URL.revokeObjectURL(url);
   }
+}
+
+export async function loadVRMFromArrayBuffer(
+  buffer: ArrayBuffer,
+  scene: THREE.Scene
+): Promise<VRM> {
+  const gltf = await new Promise<GLTF>((resolve, reject) => {
+    gltfLoader.parse(
+      buffer,
+      '',
+      (parsed) => resolve(parsed),
+      (error) => reject(error)
+    );
+  });
+  return setupVRM(gltf.userData.vrm as VRM, scene);
 }
 
 function setupVRM(vrm: VRM, scene: THREE.Scene): VRM {

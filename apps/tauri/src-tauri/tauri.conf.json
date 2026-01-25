@@ -1,0 +1,35 @@
+{
+  "$schema": "../node_modules/@tauri-apps/cli/schema.json",
+  "productName": "VRM Desktop",
+  "version": "0.1.0",
+  "identifier": "com.vrm-desktop.app",
+  "build": {
+    "beforeDevCommand": "bun run dev:ui",
+    "beforeBuildCommand": "bun run build:ui",
+    "devUrl": "http://localhost:5174",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "macOSPrivateApi": true,
+    "windows": [
+      {
+        "label": "main",
+        "title": "VRM Desktop",
+        "width": 900,
+        "height": 900,
+        "resizable": false,
+        "maximizable": false,
+        "alwaysOnTop": true,
+        "transparent": true,
+        "decorations": false
+      }
+    ],
+    "security": {
+      "capabilities": ["default"]
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all"
+  }
+}

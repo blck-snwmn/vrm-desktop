@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import type { GLTF } from 'three/addons/loaders/GLTFLoader.js';
 import {
   VRMAnimationLoaderPlugin,
   createVRMAnimationClip,
@@ -50,6 +51,35 @@ export class AnimationController {
       } catch (error) {
         console.warn(`Failed to load animation: ${entry.name}`, error);
       }
+    }
+  }
+
+  async loadAnimationFromBuffer(name: string, buffer: ArrayBuffer): Promise<void> {
+    try {
+      const gltf = await new Promise<GLTF>((resolve, reject) => {
+        this.gltfLoader.parse(
+          buffer,
+          '',
+          (parsed) => resolve(parsed),
+          (error) => reject(error)
+        );
+      });
+      const vrmAnimations = gltf.userData.vrmAnimations as VRMAnimation[];
+
+      const firstAnimation = vrmAnimations?.[0];
+      if (firstAnimation) {
+        const clip = createVRMAnimationClip(firstAnimation, this.vrm);
+        clip.name = name;
+        this.clips.set(name, clip);
+        if (!this.clipOrder.includes(name)) {
+          this.clipOrder.push(name);
+        }
+        console.log(`Animation loaded: ${name}`);
+      } else {
+        console.warn(`No animation data in buffer: ${name}`);
+      }
+    } catch (error) {
+      console.warn(`Failed to load animation: ${name}`, error);
     }
   }
 

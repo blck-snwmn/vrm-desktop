@@ -9,7 +9,15 @@ export interface SceneContext {
   clock: THREE.Clock;
 }
 
-export function initScene(canvas: HTMLCanvasElement): SceneContext {
+export interface SceneOptions {
+  showGrid?: boolean;
+}
+
+export function initScene(
+  canvas: HTMLCanvasElement,
+  options: SceneOptions = {}
+): SceneContext {
+  const { showGrid = true } = options;
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0x87ceeb);
 
@@ -24,6 +32,7 @@ export function initScene(canvas: HTMLCanvasElement): SceneContext {
   const renderer = new THREE.WebGLRenderer({
     canvas,
     antialias: true,
+    alpha: true,
   });
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(window.devicePixelRatio);
@@ -35,8 +44,10 @@ export function initScene(canvas: HTMLCanvasElement): SceneContext {
   const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
   scene.add(ambientLight);
 
-  const gridHelper = new THREE.GridHelper(10, 10);
-  scene.add(gridHelper);
+  if (showGrid) {
+    const gridHelper = new THREE.GridHelper(10, 10);
+    scene.add(gridHelper);
+  }
 
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.target.set(0, 1, 0);
