@@ -1,6 +1,5 @@
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import type { GLTF } from 'three/addons/loaders/GLTFLoader.js';
+import { GLTFLoader, type GLTF } from 'three/addons/loaders/GLTFLoader.js';
 import {
   VRMAnimationLoaderPlugin,
   createVRMAnimationClip,
@@ -10,7 +9,8 @@ import type { VRM } from '@pixiv/three-vrm';
 
 interface AnimationEntry {
   name: string;
-  url: string;
+  url?: string;
+  arrayBuffer?: ArrayBuffer;
 }
 
 export class AnimationController {
@@ -37,7 +37,7 @@ export class AnimationController {
   async loadAnimations(entries: AnimationEntry[]): Promise<void> {
     for (const entry of entries) {
       try {
-        const gltf = await this.gltfLoader.loadAsync(entry.url);
+        const gltf = await this.loadGLTF(entry);
         const vrmAnimations = gltf.userData.vrmAnimations as VRMAnimation[];
 
         const firstAnimation = vrmAnimations?.[0];
@@ -56,14 +56,7 @@ export class AnimationController {
 
   async loadAnimationFromBuffer(name: string, buffer: ArrayBuffer): Promise<void> {
     try {
-      const gltf = await new Promise<GLTF>((resolve, reject) => {
-        this.gltfLoader.parse(
-          buffer,
-          '',
-          (parsed) => resolve(parsed),
-          (error) => reject(error)
-        );
-      });
+      const gltf = await this.loadGLTF({ name, arrayBuffer: buffer });
       const vrmAnimations = gltf.userData.vrmAnimations as VRMAnimation[];
 
       const firstAnimation = vrmAnimations?.[0];
@@ -81,6 +74,20 @@ export class AnimationController {
     } catch (error) {
       console.warn(`Failed to load animation: ${name}`, error);
     }
+  }
+
+  private loadGLTF(entry: AnimationEntry): Promise<GLTF> {
+    if (entry.arrayBuffer) {
+      return new Promise<GLTF>((resolve, reject) => {
+        this.gltfLoader.parse(entry.arrayBuffer, '', resolve, reject);
+      });
+    }
+
+    if (!entry.url) {
+      return Promise.reject(new Error('Animation entry requires url or arrayBuffer'));
+    }
+
+    return this.gltfLoader.loadAsync(entry.url);
   }
 
   startSequentialLoop(): void {
