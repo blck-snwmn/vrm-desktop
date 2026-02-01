@@ -1,0 +1,43 @@
+{
+  "name": "@vrm-desktop/electron",
+  "productName": "VRM Desktop",
+  "version": "0.0.1",
+  "description": "VRM desktop viewer",
+  "main": ".vite/build/main.js",
+  "private": true,
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "eslint --ext .ts,.tsx ."
+  },
+  "dependencies": {
+    "@vrm-desktop/core": "workspace:*",
+    "electron-squirrel-startup": "^1.0.0"
+  },
+  "keywords": [],
+  "author": {
+    "name": "blck-snwmn",
+    "email": "whitesnowmancreator@gmail.com"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@electron-forge/cli": "^7.11.1",
+    "@electron-forge/maker-deb": "^7.11.1",
+    "@electron-forge/maker-rpm": "^7.11.1",
+    "@electron-forge/maker-squirrel": "^7.11.1",
+    "@electron-forge/maker-zip": "^7.11.1",
+    "@electron-forge/plugin-fuses": "^7.11.1",
+    "@electron-forge/plugin-vite": "^7.11.1",
+    "@electron/fuses": "^1.8.0",
+    "@types/electron-squirrel-startup": "^1.0.2",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "electron": "latest",
+    "eslint": "^8.0.1",
+    "eslint-plugin-import": "^2.25.0",
+    "typescript": "~4.5.4",
+    "vite": "^7.3.1"
+  }
+}

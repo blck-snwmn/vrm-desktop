@@ -10,6 +10,8 @@ export interface SceneContext {
 }
 
 export interface SceneOptions {
+  transparent?: boolean;
+  backgroundColor?: number | null;
   showGrid?: boolean;
 }
 
@@ -17,9 +19,14 @@ export function initScene(
   canvas: HTMLCanvasElement,
   options: SceneOptions = {}
 ): SceneContext {
-  const { showGrid = true } = options;
+  const { transparent = false, backgroundColor = 0x87ceeb, showGrid = true } =
+    options;
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x87ceeb);
+  if (transparent || backgroundColor === null) {
+    scene.background = null;
+  } else {
+    scene.background = new THREE.Color(backgroundColor);
+  }
 
   const camera = new THREE.PerspectiveCamera(
     45,
@@ -32,8 +39,11 @@ export function initScene(
   const renderer = new THREE.WebGLRenderer({
     canvas,
     antialias: true,
-    alpha: true,
+    alpha: transparent,
   });
+  if (transparent) {
+    renderer.setClearColor(0x000000, 0);
+  }
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(window.devicePixelRatio);
 

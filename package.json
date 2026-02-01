@@ -5,6 +5,6 @@
   "scripts": {
     "dev:web": "bun run --filter @vrm-desktop/web dev",
     "dev:tauri": "bun run --filter @vrm-desktop/tauri dev",
-    "dev:electron": "bun run --filter @vrm-desktop/electron dev"
+    "dev:electron": "cd apps/electron && npm run start"
   }
 }
