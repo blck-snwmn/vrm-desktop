@@ -8,9 +8,9 @@
   "dependencies": {
     "@pixiv/three-vrm": "^3.4.5",
     "@pixiv/three-vrm-animation": "^3.4.5",
-    "three": "^0.182.0"
+    "three": "^0.184.0"
   },
   "devDependencies": {
-    "@types/three": "0.182.0"
+    "@types/three": "0.184.1"
   }
 }
