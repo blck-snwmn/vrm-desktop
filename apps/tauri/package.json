@@ -20,6 +20,6 @@
     "@tauri-apps/cli": "2.11.2",
     "@types/node": "22.19.19",
     "@types/three": "0.184.1",
-    "vite": "7.3.3"
+    "vite": "7.3.5"
   }
 }
