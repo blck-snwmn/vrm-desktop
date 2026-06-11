@@ -38,6 +38,6 @@
     "eslint": "8.57.1",
     "eslint-plugin-import": "2.32.0",
     "typescript": "6.0.3",
-    "vite": "7.3.5"
+    "vite": "8.0.16"
   }
 }
