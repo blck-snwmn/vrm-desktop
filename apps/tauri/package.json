@@ -14,7 +14,7 @@
     "@tauri-apps/api": "^2.0.0",
     "@tauri-apps/plugin-dialog": "^2.0.0",
     "@tauri-apps/plugin-fs": "^2.0.0",
-    "three": "^0.184.0"
+    "three": "^0.185.0"
   },
   "devDependencies": {
     "@tauri-apps/cli": "2.11.3",
