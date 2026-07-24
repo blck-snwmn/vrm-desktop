@@ -31,7 +31,9 @@ function joinRelativePath(...segments: string[]): string {
 
 export async function loadConfigFromResource(): Promise<AppConfig> {
   try {
-    const json = await readTextFile('config/config.json', { baseDir: appDataBaseDir });
+    const json = await readTextFile('config/config.json', {
+      baseDir: appDataBaseDir,
+    });
     return JSON.parse(json) as AppConfig;
   } catch {
     const json = await readTextFile('config.json', { baseDir: appDataBaseDir });
@@ -45,7 +47,9 @@ export async function loadVRMBinary(filename: string): Promise<ArrayBuffer> {
   return toArrayBuffer(bytes);
 }
 
-export async function loadAnimationBinary(filename: string): Promise<ArrayBuffer> {
+export async function loadAnimationBinary(
+  filename: string,
+): Promise<ArrayBuffer> {
   const filePath = joinRelativePath('models', 'animations', filename);
   const bytes = await readFile(filePath, { baseDir: appDataBaseDir });
   return toArrayBuffer(bytes);

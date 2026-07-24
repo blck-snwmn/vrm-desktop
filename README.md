@@ -43,9 +43,9 @@ bun run dev:tauri
 
 ## Packages
 
-| Package | Description |
-|---------|-------------|
+| Package                                   | Description                    |
+| ----------------------------------------- | ------------------------------ |
 | [@vrm-desktop/core](./packages/vrm-core/) | Platform-independent VRM logic |
-| [@vrm-desktop/web](./apps/web/) | Browser version |
-| [@vrm-desktop/tauri](./apps/tauri/) | Tauri desktop app |
-| @vrm-desktop/electron | Electron desktop app (planned)
+| [@vrm-desktop/web](./apps/web/)           | Browser version                |
+| [@vrm-desktop/tauri](./apps/tauri/)       | Tauri desktop app              |
+| @vrm-desktop/electron                     | Electron desktop app (planned) |

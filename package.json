@@ -1,10 +1,18 @@
 {
   "name": "vrm-desktop",
   "private": true,
-  "workspaces": ["packages/*", "apps/*"],
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
   "scripts": {
     "dev:web": "bun run --filter @vrm-desktop/web dev",
     "dev:tauri": "bun run --filter @vrm-desktop/tauri dev",
-    "dev:electron": "cd apps/electron && npm run start"
+    "dev:electron": "cd apps/electron && npm run start",
+    "fmt": "oxfmt --write .",
+    "fmt:check": "oxfmt --check ."
+  },
+  "devDependencies": {
+    "oxfmt": "0.60.0"
   }
 }

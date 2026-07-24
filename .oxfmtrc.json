@@ -1,0 +1,18 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "printWidth": 80,
+  "singleQuote": true,
+  "sortPackageJson": false,
+  "ignorePatterns": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/.vite/**",
+    "**/out/**",
+    "**/coverage/**",
+    "**/src-tauri/target/**",
+    "**/src-tauri/gen/**",
+    "bun.lock",
+    "**/*.vrm",
+    "**/*.vrma"
+  ]
+}
