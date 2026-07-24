@@ -34,9 +34,9 @@ const createWindow = () => {
   });
 
   if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
-    mainWindow.loadURL(MAIN_WINDOW_VITE_DEV_SERVER_URL);
+    void mainWindow.loadURL(MAIN_WINDOW_VITE_DEV_SERVER_URL);
   } else {
-    mainWindow.loadFile(
+    void mainWindow.loadFile(
       path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`),
     );
   }
@@ -147,10 +147,11 @@ async function resolveAssetPath(
 }
 
 function bufferToArrayBuffer(buffer: Buffer): ArrayBuffer {
-  return buffer.buffer.slice(
-    buffer.byteOffset,
-    buffer.byteOffset + buffer.byteLength,
+  const copy = new Uint8Array(buffer.byteLength);
+  copy.set(
+    new Uint8Array(buffer.buffer, buffer.byteOffset, buffer.byteLength),
   );
+  return copy.buffer;
 }
 
 function setAdjustMode(enabled: boolean) {
