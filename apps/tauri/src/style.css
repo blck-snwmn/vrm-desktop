@@ -35,7 +35,9 @@ body.window-mode {
   color: #ffffff;
   font-size: 12px;
   line-height: 1.4;
-  font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family:
+    'SF Mono', ui-monospace, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.2s ease;

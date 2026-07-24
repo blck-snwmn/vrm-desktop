@@ -41,7 +41,7 @@ async function main() {
 function startAnimationLoop(
   ctx: SceneContext,
   vrm: VRM,
-  animController: AnimationController
+  animController: AnimationController,
 ) {
   const { scene, camera, renderer, controls, clock } = ctx;
 

@@ -1,6 +1,10 @@
 import './style.css';
 import * as THREE from 'three';
-import { AnimationController, initScene, loadVRMFromArrayBuffer } from '@vrm-desktop/core';
+import {
+  AnimationController,
+  initScene,
+  loadVRMFromArrayBuffer,
+} from '@vrm-desktop/core';
 import type { SceneContext, VRM } from '@vrm-desktop/core';
 import { getCurrentWindow } from '@tauri-apps/api/window';
 import {
@@ -50,7 +54,7 @@ function setupShiftDrag() {
       event.stopPropagation();
       void windowApi.startDragging();
     },
-    { capture: true }
+    { capture: true },
   );
 }
 
@@ -61,7 +65,10 @@ function setupWindowModeToggle(ctx: SceneContext) {
   const applyMode = async (nextMode: boolean) => {
     isWindowMode = nextMode;
     document.body.classList.toggle('window-mode', nextMode);
-    ctx.renderer.setClearColor(nextMode ? 0x111111 : 0x000000, nextMode ? 1 : 0);
+    ctx.renderer.setClearColor(
+      nextMode ? 0x111111 : 0x000000,
+      nextMode ? 1 : 0,
+    );
     await windowApi.setDecorations(nextMode);
     await windowApi.setResizable(nextMode);
   };
@@ -84,11 +91,16 @@ function frameVrm(ctx: SceneContext, vrm: VRM) {
   const center = box.getCenter(new THREE.Vector3());
   const maxDim = Math.max(size.x, size.y, size.z);
   const fov = THREE.MathUtils.degToRad(ctx.camera.fov);
-  const distance = (maxDim / 2) / Math.tan(fov / 2);
-  const direction = ctx.camera.position.clone().sub(ctx.controls.target).normalize();
+  const distance = maxDim / 2 / Math.tan(fov / 2);
+  const direction = ctx.camera.position
+    .clone()
+    .sub(ctx.controls.target)
+    .normalize();
   const padding = 1.25;
 
-  ctx.camera.position.copy(center.clone().add(direction.multiplyScalar(distance * padding)));
+  ctx.camera.position.copy(
+    center.clone().add(direction.multiplyScalar(distance * padding)),
+  );
   ctx.camera.near = Math.max(0.01, distance / 100);
   ctx.camera.far = distance * 100;
   ctx.camera.updateProjectionMatrix();
@@ -146,10 +158,7 @@ async function main() {
   }
 }
 
-function startAnimationLoop(
-  ctx: SceneContext,
-  state: AppState
-) {
+function startAnimationLoop(ctx: SceneContext, state: AppState) {
   const { scene, camera, renderer, controls, clock } = ctx;
 
   function loop() {

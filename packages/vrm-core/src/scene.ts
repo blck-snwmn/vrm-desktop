@@ -17,10 +17,13 @@ export interface SceneOptions {
 
 export function initScene(
   canvas: HTMLCanvasElement,
-  options: SceneOptions = {}
+  options: SceneOptions = {},
 ): SceneContext {
-  const { transparent = false, backgroundColor = 0x87ceeb, showGrid = true } =
-    options;
+  const {
+    transparent = false,
+    backgroundColor = 0x87ceeb,
+    showGrid = true,
+  } = options;
   const scene = new THREE.Scene();
   if (transparent || backgroundColor === null) {
     scene.background = null;
@@ -32,7 +35,7 @@ export function initScene(
     45,
     window.innerWidth / window.innerHeight,
     0.1,
-    100
+    100,
   );
   camera.position.set(0, 1.2, 3);
 

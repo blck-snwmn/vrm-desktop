@@ -10,7 +10,10 @@ export async function loadVRM(url: string, scene: THREE.Scene): Promise<VRM> {
   return setupVRM(gltf.userData.vrm as VRM, scene);
 }
 
-export async function loadVRMFromFile(file: File, scene: THREE.Scene): Promise<VRM> {
+export async function loadVRMFromFile(
+  file: File,
+  scene: THREE.Scene,
+): Promise<VRM> {
   const url = URL.createObjectURL(file);
   try {
     const gltf = await gltfLoader.loadAsync(url);
@@ -22,7 +25,7 @@ export async function loadVRMFromFile(file: File, scene: THREE.Scene): Promise<V
 
 export async function loadVRMFromArrayBuffer(
   buffer: ArrayBuffer,
-  scene: THREE.Scene
+  scene: THREE.Scene,
 ): Promise<VRM> {
   const gltf = await new Promise<GLTF>((resolve, reject) => {
     gltfLoader.parse(buffer, '', resolve, reject);

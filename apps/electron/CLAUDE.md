@@ -3,6 +3,7 @@
 Electron desktop app. To be implemented.
 
 ## Implementation Notes
+
 - Use electron-vite
 - Main process: `main/index.ts`
 - Preload: `main/preload.ts`

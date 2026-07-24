@@ -1,7 +1,4 @@
 {
   "model": "your-model.vrm",
-  "animations": [
-    "animation1.vrma",
-    "animation2.vrma"
-  ]
+  "animations": ["animation1.vrma", "animation2.vrma"]
 }

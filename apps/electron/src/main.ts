@@ -123,7 +123,10 @@ async function readConfig(): Promise<AppConfig> {
 
 function isWithinBase(baseDir: string, targetPath: string): boolean {
   const relative = path.relative(baseDir, targetPath);
-  return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
+  return (
+    relative === '' ||
+    (!relative.startsWith('..') && !path.isAbsolute(relative))
+  );
 }
 
 async function resolveAssetPath(
@@ -131,9 +134,7 @@ async function resolveAssetPath(
   value: string,
 ): Promise<string> {
   const baseDir = kind === 'model' ? getModelsPath() : getAnimationsPath();
-  const candidate = path.isAbsolute(value)
-    ? value
-    : path.join(baseDir, value);
+  const candidate = path.isAbsolute(value) ? value : path.join(baseDir, value);
 
   if (!isWithinBase(baseDir, candidate)) {
     throw new Error(`Asset must be under ${baseDir}`);
@@ -148,9 +149,7 @@ async function resolveAssetPath(
 
 function bufferToArrayBuffer(buffer: Buffer): ArrayBuffer {
   const copy = new Uint8Array(buffer.byteLength);
-  copy.set(
-    new Uint8Array(buffer.buffer, buffer.byteOffset, buffer.byteLength),
-  );
+  copy.set(new Uint8Array(buffer.buffer, buffer.byteOffset, buffer.byteLength));
   return copy.buffer;
 }
 

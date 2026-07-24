@@ -54,7 +54,10 @@ export class AnimationController {
     }
   }
 
-  async loadAnimationFromBuffer(name: string, buffer: ArrayBuffer): Promise<void> {
+  async loadAnimationFromBuffer(
+    name: string,
+    buffer: ArrayBuffer,
+  ): Promise<void> {
     try {
       const gltf = await this.loadGLTF({ name, arrayBuffer: buffer });
       const vrmAnimations = gltf.userData.vrmAnimations as VRMAnimation[];
@@ -85,7 +88,9 @@ export class AnimationController {
     }
 
     if (!entry.url) {
-      return Promise.reject(new Error('Animation entry requires url or arrayBuffer'));
+      return Promise.reject(
+        new Error('Animation entry requires url or arrayBuffer'),
+      );
     }
 
     return this.gltfLoader.loadAsync(entry.url);
