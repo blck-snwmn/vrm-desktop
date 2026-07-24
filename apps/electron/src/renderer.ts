@@ -30,13 +30,14 @@ function toArrayBuffer(data: ArrayBuffer | Uint8Array): ArrayBuffer {
   if (data instanceof ArrayBuffer) {
     return data;
   }
-  return data.buffer.slice(data.byteOffset, data.byteOffset + data.byteLength);
+  const copy = new Uint8Array(data.byteLength);
+  copy.set(new Uint8Array(data.buffer, data.byteOffset, data.byteLength));
+  return copy.buffer;
 }
 
 function resetScene() {
   if (currentVrm) {
     ctx.scene.remove(currentVrm.scene);
-    currentVrm.dispose?.();
   }
   currentVrm = null;
   animationController = null;

@@ -77,9 +77,10 @@ export class AnimationController {
   }
 
   private loadGLTF(entry: AnimationEntry): Promise<GLTF> {
-    if (entry.arrayBuffer) {
+    const { arrayBuffer } = entry;
+    if (arrayBuffer) {
       return new Promise<GLTF>((resolve, reject) => {
-        this.gltfLoader.parse(entry.arrayBuffer, '', resolve, reject);
+        this.gltfLoader.parse(arrayBuffer, '', resolve, reject);
       });
     }
 
