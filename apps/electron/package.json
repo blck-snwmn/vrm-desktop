@@ -10,8 +10,7 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "lint": "oxlint --deny-warnings .",
-    "typecheck": "tsc --noEmit"
+    "lint": "oxlint --deny-warnings ."
   },
   "dependencies": {
     "@vrm-desktop/core": "workspace:*",

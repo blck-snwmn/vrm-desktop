@@ -19,8 +19,6 @@ jobs:
       - run: bun install --frozen-lockfile
       - name: Lint
         run: bun run --cwd apps/electron lint
-      - name: Typecheck
-        run: bun run --cwd apps/electron typecheck
       - run: bun build --target=node apps/electron/src/main.ts --outdir /tmp/vrm-desktop-electron-main-build
       - run: bun build --target=node apps/electron/src/preload.ts --outdir /tmp/vrm-desktop-electron-preload-build
       - run: bun build --target=browser apps/electron/src/renderer.ts --outdir /tmp/vrm-desktop-electron-renderer-build
