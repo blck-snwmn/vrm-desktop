@@ -13,6 +13,8 @@ VRM viewer for desktop (Tauri/Electron).
 
 - `bun install` - Install all dependencies
 - `bun run dev:web` - Start web dev server
+- `bun run fmt` - Format repository files
+- `bun run fmt:check` - Check repository formatting
 
 ## Bun
 
