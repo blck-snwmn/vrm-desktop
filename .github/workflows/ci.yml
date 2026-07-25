@@ -24,3 +24,29 @@ jobs:
       - run: bun build --target=node apps/electron/src/main.ts --outdir /tmp/vrm-desktop-electron-main-build
       - run: bun build --target=node apps/electron/src/preload.ts --outdir /tmp/vrm-desktop-electron-preload-build
       - run: bun build --target=browser apps/electron/src/renderer.ts --outdir /tmp/vrm-desktop-electron-renderer-build
+
+  tauri:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+      - name: Install Tauri system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes \
+            libwebkit2gtk-4.1-dev \
+            build-essential \
+            curl \
+            wget \
+            file \
+            libxdo-dev \
+            libssl-dev \
+            libayatana-appindicator3-dev \
+            librsvg2-dev
+      - run: bun install --frozen-lockfile
+      - name: Build Tauri UI
+        run: bun run --cwd apps/tauri build:ui
+      - name: Check Tauri Rust
+        run: cargo check --locked --manifest-path apps/tauri/src-tauri/Cargo.toml
