@@ -11,10 +11,10 @@
   },
   "dependencies": {
     "@vrm-desktop/core": "workspace:*",
-    "@tauri-apps/api": "^2.0.0",
-    "@tauri-apps/plugin-dialog": "^2.0.0",
-    "@tauri-apps/plugin-fs": "^2.0.0",
-    "three": "^0.185.0"
+    "@tauri-apps/api": "2.11.1",
+    "@tauri-apps/plugin-dialog": "2.7.2",
+    "@tauri-apps/plugin-fs": "2.5.1",
+    "three": "0.185.1"
   },
   "devDependencies": {
     "@tauri-apps/cli": "2.11.4",
