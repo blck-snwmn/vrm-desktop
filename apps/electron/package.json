@@ -34,7 +34,7 @@
     "@electron/fuses": "2.1.3",
     "@types/electron-squirrel-startup": "1.0.2",
     "electron": "latest",
-    "oxlint": "1.75.0",
+    "oxlint": "1.76.0",
     "oxlint-tsgolint": "7.0.2001",
     "typescript": "7.0.2",
     "vite": "8.1.5"
