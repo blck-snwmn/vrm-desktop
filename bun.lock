@@ -40,7 +40,7 @@
         "@tauri-apps/plugin-dialog": "2.7.3",
         "@tauri-apps/plugin-fs": "2.5.2",
         "@vrm-desktop/core": "workspace:*",
-        "three": "0.185.1",
+        "three": "0.186.0",
       },
       "devDependencies": {
         "@tauri-apps/cli": "2.11.4",
@@ -64,7 +64,7 @@
       "dependencies": {
         "@pixiv/three-vrm": "3.5.5",
         "@pixiv/three-vrm-animation": "3.5.5",
-        "three": "0.185.1",
+        "three": "0.186.0",
       },
       "devDependencies": {
         "@types/three": "0.185.4",
@@ -1134,7 +1134,7 @@
 
     "terser-webpack-plugin": ["terser-webpack-plugin@5.3.16", "", { "dependencies": { "@jridgewell/trace-mapping": "^0.3.25", "jest-worker": "^27.4.5", "schema-utils": "^4.3.0", "serialize-javascript": "^6.0.2", "terser": "^5.31.1" }, "peerDependencies": { "webpack": "^5.1.0" } }, "sha512-h9oBFCWrq78NyWWVcSwZarJkZ01c2AyGrzs1crmHZO3QUg9D61Wu4NPjBy69n7JqylFF5y+CsUZYmYEIZ3mR+Q=="],
 
-    "three": ["three@0.185.1", "", {}, "sha512-5aojFCXKwnjBRZvUnt3WFfEcvUJgkN5LlijRFN95hMy8WVkG4I0QNcJE+OuWvuJ0bOdStrbfXn0pkd6/QyiAlg=="],
+    "three": ["three@0.186.0", "", {}, "sha512-cr/fIM2ddMSVbYVgkfD4jLJv7Fh/8ZTjvo+7gQeSVGUZHxpx9FDwoL5iC7hUz/LiRA8wMbqfnb90xKfm1/HHkQ=="],
 
     "tiny-each-async": ["tiny-each-async@2.0.3", "", {}, "sha512-5ROII7nElnAirvFn8g7H7MtpfV1daMcyfTGQwsn/x2VtyV+VPiO5CjReCJtWLvoKTDEDmZocf3cNPraiMnBXLA=="],
 
