@@ -9,6 +9,6 @@ edition = "2021"
 tauri-build = { version = "=2.7.1", features = [] }
 
 [dependencies]
-tauri = { version = "=2.12.1", features = ["macos-private-api"] }
+tauri = { version = "=2.12.2", features = ["macos-private-api"] }
 tauri-plugin-fs = "=2.6.0"
 tauri-plugin-dialog = "=2.8.1"
